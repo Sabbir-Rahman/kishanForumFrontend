@@ -70,7 +70,7 @@ const Navbar = () => {
                 color="secondary"
                 onClick={logout}
               >
-                Logout
+                লগ আউট
               </Button>
             </div>
           ) : (
@@ -80,7 +80,7 @@ const Navbar = () => {
               variant="contained"
               color="primary"
             >
-              Sign In
+              প্রবেশ করুন
             </Button>
           )}
         </Toolbar>

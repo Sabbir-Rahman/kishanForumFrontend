@@ -62,41 +62,85 @@ const Form = ({ currentId, setCurrentId }) => {
     }
     if(!user?.result?.name) {
         return (
-              <Paper className={classes.paper}>
-                  <Typography variant="h6" align="center">
-                      Please sign in to create your own memories and like others  
-                  </Typography>
-  
-              </Paper>
-          )
+          <Paper className={classes.paper}>
+            <Typography variant="h6" align="center">
+              বক্তব্য জমা,পছন্দ বা মন্তব্যের জন্য অনুগ্রহ করে প্রবেশ করুন
+            </Typography>
+          </Paper>
+        );
       }
     else{
-        return(
-            <Paper className={classes.paper}>
-                <form autoComplete="off" noValidate className={`${classes.root} ${classes.form}`} onSubmit={handleSubmit}>
-                <Typography variant="h6">{currentId ? 'Editing' : 'Creating'}</Typography>
-                <TextField 
-                    name="title" 
-                    variant="outlined" 
-                    label="Title" 
-                    fullWidth
-                    value={postdata.title}
-                    onChange={(event) => setPostData({ ...postdata,title: event.target.value })}
+        return (
+          <Paper className={classes.paper}>
+            <form
+              autoComplete="off"
+              noValidate
+              className={`${classes.root} ${classes.form}`}
+              onSubmit={handleSubmit}
+            >
+              <Typography variant="h6">
+                {currentId ? "Editing" : "Creating"}
+              </Typography>
+              <TextField
+                name="title"
+                variant="outlined"
+                label="টপিক"
+                fullWidth
+                value={postdata.title}
+                onChange={(event) =>
+                  setPostData({ ...postdata, title: event.target.value })
+                }
+              />
+              <TextField
+                name="message"
+                variant="outlined"
+                label="বক্তব্য"
+                fullWidth
+                value={postdata.message}
+                onChange={(event) =>
+                  setPostData({ ...postdata, message: event.target.value })
+                }
+              />
+              <TextField
+                name="tags"
+                variant="outlined"
+                label="ট্যাগ (কমা দিয়ে আলাদা)"
+                fullWidth
+                value={postdata.tags}
+                onChange={(e) =>
+                  setPostData({ ...postdata, tags: e.target.value.split(",") })
+                }
+              />
+              <div className={classes.fileInput}>
+                <FileBase
+                  type="file"
+                  multiple={false}
+                  onDone={({ base64 }) =>
+                    setPostData({ ...postdata, selectedFile: base64 })
+                  }
                 />
-                <TextField 
-                    name="message" 
-                    variant="outlined" 
-                    label="Message" 
-                    fullWidth
-                    value={postdata.message}
-                    onChange={(event) => setPostData({ ...postdata,message: event.target.value })}
-                />
-                <TextField name="tags" variant="outlined" label="Tags (coma separated)" fullWidth value={postdata.tags} onChange={(e) => setPostData({ ...postdata, tags: e.target.value.split(',') })} />
-                <div className={classes.fileInput}><FileBase type="file" multiple={false} onDone={({ base64 }) => setPostData({ ...postdata, selectedFile: base64 })} /></div>
-                <Button className={classes.buttonSubmit} variant="contained" color="primary" size="large" type="submit" fullWidth>Submit</Button>
-                <Button variant="contained" color="secondary" size="small"  onClick={clear} fullWidth>Clear</Button>
-                </form>
-            </Paper>
+              </div>
+              <Button
+                className={classes.buttonSubmit}
+                variant="contained"
+                color="primary"
+                size="large"
+                type="submit"
+                fullWidth
+              >
+                জমা দিন
+              </Button>
+              <Button
+                variant="contained"
+                color="secondary"
+                size="small"
+                onClick={clear}
+                fullWidth
+              >
+                মুছুন
+              </Button>
+            </form>
+          </Paper>
         );
     }
 }

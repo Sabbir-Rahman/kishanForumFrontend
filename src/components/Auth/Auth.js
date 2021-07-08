@@ -65,62 +65,102 @@ const Auth = () => {
         alert('Google Sign In was unsuccesfull. Try again letter')
     }
 
-    return(
-        <Container component="main" maxWidth="xs">
-            <Paper className={classes.paper} elevation={3}>
-                <Avatar className={classes.avatar}>
-                    <LockOutlinedIcon />
-                </Avatar>
-                <Typography component="h1" variant="h5">{isSignUp ? 'Sign Up' : 'Sign In'}</Typography>
-                <form className={classes.form} onSubmit={handleSubmit}>
-                    <Grid container spacing={2}>
-                        {
-                            //only if it is signUp then show something
-                            isSignUp && (
-                                <> 
-                                   <Input name="firstName" label="First Name" handleChange={handleChange} autoFocus half/>
-                                   <Input name="lastName" label="Last Name" handleChange={handleChange} half/>
-                                </>
-                            )
-                        }
-                        <Input name="email" label="Email Address" handleChange={handleChange} type="email"/>
-                        <Input name="password" label="Password" handleChange={handleChange} type={showPassword? "text" : "password"} handleShowPassword={handleShowPassword}/>
-                    
-                        { isSignUp && <Input name="confirmPassword" label="Repeat Password" handleChange={handleChange} type="password"/>}
-                    </Grid>
-                    <Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit}>
-                        {isSignUp ? 'Sign Up' : 'Sign In'}
-                    </Button>
-                    <GoogleLogin 
-                        clientId="268305242439-8jhgmconc9clu0b39a1ejhnl4gg0ovnc.apps.googleusercontent.com"
-                        render={(renderProps) => 
-                            <Button 
-                            className={classes.googleButton} 
-                            color="primary" 
-                            fullWidth onClick={renderProps.onClick} 
-                            disabled={renderProps.disabled} 
-                            startIcon={<Icon/>}
-                            variant="contained"
-                            >
-                                Google Sign In
-                            </Button>
-                        }
-                        onSuccess={googleSuccess}
-                        onFailure={googleFailure}
-                        cookiePolicy="single_host_origin"
+    return (
+      <Container component="main" maxWidth="xs">
+        <Paper className={classes.paper} elevation={3}>
+          <Avatar className={classes.avatar}>
+            <LockOutlinedIcon />
+          </Avatar>
+          <Typography component="h1" variant="h5">
+            {isSignUp ? "একাউন্ট খুলুন" : "প্রবেশ করুন"}
+          </Typography>
+          <form className={classes.form} onSubmit={handleSubmit}>
+            <Grid container spacing={2}>
+              {
+                //only if it is signUp then show something
+                isSignUp && (
+                  <>
+                    <Input
+                      name="firstName"
+                      label="প্রথম নাম"
+                      handleChange={handleChange}
+                      autoFocus
+                      half
                     />
-                    
-                    <Grid container justify="flex-end">
-                        <Grid item>
-                            <Button onClick={switchMode}>
-                                { isSignUp ? 'Already have an account? Sign In': "Don't have an account? Sign Up"}
-                            </Button>
-                        </Grid>
-                    </Grid>
-                </form>
-            </Paper>
-        </Container>
-    )
+                    <Input
+                      name="lastName"
+                      label="শেষ নাম"
+                      handleChange={handleChange}
+                      half
+                    />
+                  </>
+                )
+              }
+              <Input
+                name="email"
+                label="ইমেইল"
+                handleChange={handleChange}
+                type="email"
+              />
+              <Input
+                name="password"
+                label="পাসওয়ার্ড"
+                handleChange={handleChange}
+                type={showPassword ? "text" : "password"}
+                handleShowPassword={handleShowPassword}
+              />
+
+              {isSignUp && (
+                <Input
+                  name="confirmPassword"
+                  label="কনফার্ম পাসওয়ার্ড"
+                  handleChange={handleChange}
+                  type="password"
+                />
+              )}
+            </Grid>
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              color="primary"
+              className={classes.submit}
+            >
+              {isSignUp ? "একাউন্ট খুলুন" : "প্রবেশ করুন"}
+            </Button>
+            <GoogleLogin
+              clientId="268305242439-8jhgmconc9clu0b39a1ejhnl4gg0ovnc.apps.googleusercontent.com"
+              render={(renderProps) => (
+                <Button
+                  className={classes.googleButton}
+                  color="primary"
+                  fullWidth
+                  onClick={renderProps.onClick}
+                  disabled={renderProps.disabled}
+                  startIcon={<Icon />}
+                  variant="contained"
+                >
+                  গুগল দিয়ে প্রবেশ করুন
+                </Button>
+              )}
+              onSuccess={googleSuccess}
+              onFailure={googleFailure}
+              cookiePolicy="single_host_origin"
+            />
+
+            <Grid container justify="flex-end">
+              <Grid item>
+                <Button onClick={switchMode}>
+                  {isSignUp
+                    ? "একাউন্ট আছে? প্রবেশ করুন"
+                    : "একাউন্ট নেই? একাউন্ট খুলুন"}
+                </Button>
+              </Grid>
+            </Grid>
+          </form>
+        </Paper>
+      </Container>
+    );
 }
 
 

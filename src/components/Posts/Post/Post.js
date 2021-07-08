@@ -9,7 +9,7 @@ import { useDispatch }  from 'react-redux'
 import ThumbUpAltOutlined from '@material-ui/icons/ThumbUpAltOutlined';
 import { useHistory } from 'react-router-dom'
 import { deletePost, likePost } from '../../../actions/posts'
-
+import { sizing,maxHeight } from "@material-ui/system";
 const Post = ({ post, setCurrentId }) => {
    
     const classes = useStyles()
@@ -110,7 +110,7 @@ const Post = ({ post, setCurrentId }) => {
           </Typography>
           <CardContent>
             <Typography variant="body2" color="textSecondary" component="p">
-              {post.message}
+              {post.message.slice(0,150)}...
             </Typography>
           </CardContent>
         </ButtonBase>

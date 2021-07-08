@@ -28,7 +28,7 @@ const CommentSection = ({ post }) => {
     <div className={classes.commentsOuterContainer}>
       <div className={classes.commentsInnerContainer}>
         <Typography gutterBottom variant="h6">
-          Comments
+          মন্তব্যগুলি
         </Typography>
         {comments.map((c, i) => (
           <Typography key={i} gutterBottom variant="subtitle1">
@@ -44,7 +44,7 @@ const CommentSection = ({ post }) => {
         {user?.result?.name && (
           <div style={{ width: "70%" }}>
             <Typography gutterBottom variant="h6">
-              Write a Comment
+              মন্তব্য করুন
             </Typography>
             <TextField
               fullWidth
@@ -62,7 +62,7 @@ const CommentSection = ({ post }) => {
               variant="contained"
               onClick={handleClick}
             >
-              Comment
+              মন্তব্য জমা দিন
             </Button>
           </div>
         )}
