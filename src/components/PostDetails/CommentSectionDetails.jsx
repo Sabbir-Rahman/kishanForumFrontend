@@ -14,7 +14,7 @@ const CommentSection = ({ post }) => {
   const commentsRef = useRef()
 
   const handleClick = async () => {
-    const finalComment = `${user.result.name}: ${comment}`
+    const finalComment = `${user.result.name}:>? ${comment}`
 
     const newComments = await dispatch(commentPost(finalComment,post._id))
 
@@ -32,7 +32,7 @@ const CommentSection = ({ post }) => {
         </Typography>
         {comments.map((c, i) => (
           <Typography key={i} gutterBottom variant="subtitle1">
-            <strong>{c.split(":")[0]}</strong>
+            <strong>{c.split(":>?")[0]}</strong>
             <br />
             {c.split(":")[1]}
             <Divider style={{ margin: "5px 0" }} />
