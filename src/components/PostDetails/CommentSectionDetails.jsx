@@ -34,7 +34,7 @@ const CommentSection = ({ post }) => {
           <Typography key={i} gutterBottom variant="subtitle1">
             <strong>{c.split(">")[0]}</strong>
             <br />
-            {c.split(":")[1]}
+            {c.split(">")[1]}
             <Divider style={{ margin: "5px 0" }} />
           </Typography>
         ))}
