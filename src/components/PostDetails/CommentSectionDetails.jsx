@@ -9,20 +9,26 @@ const CommentSection = ({ post }) => {
   const classes = useStyles();
   const [comments, setComments] = useState(post?.comments);
   const [comment, setComment] = useState("");
-  const user = JSON.parse(localStorage.getItem('profile'));
+  const user = JSON.parse(localStorage.getItem("profile"));
   const dispatch = useDispatch();
-  const commentsRef = useRef()
+  const commentsRef = useRef();
 
   const handleClick = async () => {
-    const finalComment = `${user.result.name}> ${comment}`
+    const finalComment = `${user.result.name}> ${comment}`;
 
-    const newComments = await dispatch(commentPost(finalComment,post._id))
+    const newComments = await dispatch(commentPost(finalComment, post._id));
 
-    setComments(newComments)
-    setComment('')
+    setComments(newComments);
+    setComment("");
 
-    commentsRef.current.scrollIntoView({ behavior: 'smooth'})
+    commentsRef.current.scrollIntoView({ behavior: "smooth" });
   };
+
+
+  function detectURLs(message) {
+    var urlRegex = /(((https?:\/\/)|(www\.))[^\s]+)/g;
+    return message.match(urlRegex);
+  }
 
   return (
     <div className={classes.commentsOuterContainer}>
@@ -34,7 +40,21 @@ const CommentSection = ({ post }) => {
           <Typography key={i} gutterBottom variant="subtitle1">
             <strong>{c.split(">")[0]}</strong>
             <br />
-            {c.split(">")[1]}
+
+            {detectURLs(c.split(">")[1]) ? (
+              <div>
+                <p>
+                  {c
+                    .split(">")[1]
+                    .replace(detectURLs(c.split(">")[1]), "(link below)")}
+                </p>
+                <a href={detectURLs(c.split(">")[1])} target="_blank">
+                  Link
+                </a>
+              </div>
+            ) : (
+              <p>{c.split(">")[1]}</p>
+            )}
             <Divider style={{ margin: "5px 0" }} />
           </Typography>
         ))}
