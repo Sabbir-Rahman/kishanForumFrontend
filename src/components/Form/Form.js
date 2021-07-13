@@ -96,6 +96,8 @@ const Form = ({ currentId, setCurrentId }) => {
                 variant="outlined"
                 label="বক্তব্য"
                 fullWidth
+                rows={5}
+                multiline
                 value={postdata.message}
                 onChange={(event) =>
                   setPostData({ ...postdata, message: event.target.value })
