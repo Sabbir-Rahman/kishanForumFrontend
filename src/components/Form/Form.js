@@ -79,7 +79,7 @@ const Form = ({ currentId, setCurrentId }) => {
               onSubmit={handleSubmit}
             >
               <Typography variant="h6">
-                {currentId ? "Editing" : "Creating"}
+                {currentId ? "পোস্ট সংশোধন" : "নতুন পোস্ট"}
               </Typography>
               <TextField
                 name="title"
