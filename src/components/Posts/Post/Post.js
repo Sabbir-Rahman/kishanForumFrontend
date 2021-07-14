@@ -84,7 +84,10 @@ const Post = ({ post, setCurrentId }) => {
 
         {(user?.result?.googleId === post?.creator ||
           user?.result._id === post?.creator) &&
-          localStorage.getItem("profile") && (
+          (JSON.parse(localStorage.getItem("profile"))["result"]["name"] ===
+            post?.name ||
+            JSON.parse(localStorage.getItem("profile"))["result"]["name"] ===
+              post?.name) && (
             <div className={classes.overlay2}>
               <Button
                 style={{ color: "white" }}
@@ -127,7 +130,10 @@ const Post = ({ post, setCurrentId }) => {
 
           {(user?.result?.googleId === post?.creator ||
             user?.result._id === post?.creator) &&
-            localStorage.getItem("profile") && (
+            (JSON.parse(localStorage.getItem("profile"))["result"]["name"] ===
+              post?.name ||
+              JSON.parse(localStorage.getItem("profile"))["result"]["name"] ===
+                post?.name) && (
               <Button
                 size="small"
                 color="primary"
